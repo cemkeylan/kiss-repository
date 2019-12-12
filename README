@@ -1,0 +1,28 @@
+Personal KISS repository
+========================
+
+This is my personal KISS repository,
+I made it so anyone can install my 
+builds of st,dwm,dmenu (or my small programs)
+on Carbs Linux and KISS Linux
+
+
+Add to your KISS Path
+---------------------
+
+In order to install packages in this repository,
+you need to clone it and add it to your repository
+path. It can be accomplished with,
+
+
+	# Clone the repository
+        -> git clone git://git.ckyln.com/kiss-repository /var/db/kiss/cem-repo
+	
+	# Now edit your /etc/profile.d/kiss_path.sh file
+	# Add the path to the beginning if you want to
+
+	# Adding to the beginning makes sure that if there
+	# is the same package from another repository, it prioritizes
+	# my package
+	export KISS_PATH=/var/db/kiss/cem-repo/cem:/var/db/kiss/repo........
+
