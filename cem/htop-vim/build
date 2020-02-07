@@ -1,0 +1,8 @@
+#!/bin/sh -e
+
+patch -p1 < fix-major-undefined.patch
+
+./autogen.sh
+./configure --prefix=/usr
+make
+make DESTDIR="$1" install

@@ -1,0 +1,2 @@
+git  git+https://github.com/KoffeinFlummi/htop-vim
+ab76006aecaee57a2ba7f111a0a4f01ed69501fdcff3b4a4c571943cabdf3d73  fix-major-undefined.patch
