@@ -1,0 +1,4 @@
+#!/bin/sh -e
+
+make -C nap PREFIX=/usr DESTDIR="$1" install
+make -C nap-hooks PREFIX=/usr DESTDIR="$1" install
