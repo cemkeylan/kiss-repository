@@ -1,15 +1,6 @@
 #!/bin/sh -e
 
-make -j12
-make INSTALL_MOD_PATH="$1/usr/lib/modules" modules_install
-
-VERSION="$(sed 4q Makefile | grep VERSION | cut -d " " -f 3)"
-PATCHLEVEL="$(sed 4q Makefile | grep PATCHLEVEL | cut -d " " -f 3)"
-SUBLEVEL="$(sed 4q Makefile | grep SUBLEVEL | cut -d " " -f 3)"
-KERNELVERSION="$VERSION.$PATCHLEVEL.$SUBLEVEL"
-
-for file in vmlinux System.map ; do
-	install -Dm644 "$file" "$1/boot/$file-$KERNELVERSION"
-done
-install -Dm644 .config "$1/boot/Config-$KERNELVERSION"
-install -Dm644 arch/x86/boot/bzImage "$1/boot/vmlinuz-$KERNELVERSION"
+make -j "$(nproc)"
+install -Dm644 System.map "$1/boot/System.map"
+install -Dm644 .config "$1/boot/Config"
+install -Dm644 arch/x86/boot/bzImage "$1/boot/vmlinuz-linux-z"
