@@ -1,4 +1,0 @@
-#!/bin/sh -e
-
-install -Dm755 -t "$1/etc/profile.d" kiss_path.sh
-make PREFIX=/usr DESTDIR="$1" install
