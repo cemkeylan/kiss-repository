@@ -1,0 +1,5 @@
+#!/bin/sh -e
+
+install -Dm755 -t "$1/usr/bin" bin/ard-reset-arduino
+install -Dm644 -t "$1/usr/share/arduino" *.mk arduino-mk-vars.md
+install -Dm644 -t "$1/usr/share/man/man1" ard-reset-arduino.1
