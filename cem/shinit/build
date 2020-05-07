@@ -1,0 +1,7 @@
+#!/bin/sh -e
+
+make DESTDIR="$1" PREFIX=/usr install
+
+install -Dm755 -t "$1/usr/bin" poweroff
+ln -s poweroff "$1/usr/bin/reboot"
+ln -s shinit "$1/usr/bin/init"

@@ -1,0 +1,3 @@
+#!/bin/bash
+[ "$(id -u)" -eq 0 ] || exit 1
+/lib/init/rc.shutdown ${0##*/} & disown
