@@ -1,4 +1,0 @@
-#!/bin/sh -e
-
-install -dm755 "$1/usr/share/arduino/hardware/arduino"
-cp -a avr "$1/usr/share/arduino/hardware/arduino"

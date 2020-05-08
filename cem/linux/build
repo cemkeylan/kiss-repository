@@ -1,6 +1,0 @@
-#!/bin/sh -e
-
-make -j "$(nproc)"
-install -Dm644 System.map "$1/boot/System.map"
-install -Dm644 .config "$1/boot/Config"
-install -Dm644 arch/x86/boot/bzImage "$1/boot/vmlinuz-linux-z"
