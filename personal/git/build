@@ -38,7 +38,10 @@
     find "$1" \( -name '.packlist' -o -name '*.pod' \) -exec rm -rf {} +
 )
 
-export CFLAGS="$CFLAGS -fPIC"
+cd git
+
+# export CFLAGS="$CFLAGS -fPIC"
+# export LDFLAGS="$LDFLAGS -static"
 
 cat > config.mak <<EOF
 NO_GETTEXT=YesPlease
@@ -47,8 +50,6 @@ NO_TCLTK=YesPlease
 NO_EXPAT=YesPlease
 NO_NSEC=YesPlease
 NO_PYTHON=YesPlease
-PERL=YesPlease
-NO_SVN_TESTS=YesPlease
 NO_SYS_POLL_H=1
 NO_CROSS_DIRECTORY_HARDLINKS=1
 NO_INSTALL_HARDLINKS=1
@@ -56,12 +57,11 @@ EOF
 
 ./configure \
     --prefix=/usr \
+    --with-curl \
     ac_cv_snprintf_returns_bogus=no \
     ac_cv_fread_reads_directories=yes
 
 make
 make DESTDIR="$1" install
 
-for man in man1/*.1 man5/*.5 man7/*.7; do
-    install -Dm644 "$man" "$1/usr/share/man/$man"
-done
+mv man/* "$1/usr/share/man"
