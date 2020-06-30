@@ -1,0 +1,6 @@
+libX11        make
+libXScrnSaver make
+libXau        make
+libXext       make
+libxcb        make
+slock

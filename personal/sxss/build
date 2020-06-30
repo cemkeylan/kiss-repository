@@ -1,0 +1,4 @@
+#!/bin/sh -e
+
+make LDFLAGS="$LDFLAGS -static" LIBS="-lXss -lX11 -lxcb -lXau -lXext"
+make DESTDIR="$1" PREFIX=/usr install
