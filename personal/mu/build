@@ -1,0 +1,14 @@
+#!/bin/sh -e
+
+autoreconf -if
+
+export MAKEINFO=true
+
+./configure \
+    --prefix=/usr \
+    --disable-webkit \
+    --disable-rpath \
+    --disable-shared
+
+make
+make DESTDIR="$1" install

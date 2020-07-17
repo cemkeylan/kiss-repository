@@ -1,0 +1,6 @@
+automake   make
+gmime
+libtool    make
+pkgconf    make
+util-linux
+xapian
