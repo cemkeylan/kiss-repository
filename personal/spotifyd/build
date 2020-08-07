@@ -1,0 +1,37 @@
+#!/bin/sh -e
+
+export CARGO_HOME=$PWD
+
+(
+    cd vendor
+
+    for crate in *.crate; do
+        tar xf "$crate"
+
+        # Strip the filename from the sha256sum output.
+        sha256=$(sha256sum "$crate")
+        sha256=${sha256%% *}
+
+        printf '{"package":"%s","files":{}}\n' "$sha256" \
+               > "${crate%.crate}/.cargo-checksum.json"
+    done
+)
+
+mkdir -p .cargo
+
+cat <<EOF > .cargo/config
+[source.crates-io]
+replace-with = "vendored-sources"
+
+[source.vendored-sources]
+directory = "vendor"
+EOF
+
+
+cargo build \
+    --release \
+    --frozen \
+    --no-default-features \
+    --features alsa_backend
+
+install -Dm755 target/release/spotifyd "$1/usr/bin/spotifyd"
