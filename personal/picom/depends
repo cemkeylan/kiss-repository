@@ -1,0 +1,17 @@
+libX11
+libXdamage
+libXext
+libconfig
+libdrm
+libev
+libxcb
+libxshmfence
+mesa
+meson make
+musl
+pcre
+pixman
+uthash make
+xcb-util
+xcb-util-image
+xcb-util-renderutil
