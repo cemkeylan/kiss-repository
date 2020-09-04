@@ -1,8 +1,10 @@
 #!/bin/sh -e
 
-patch -p1 < fix-major-undefined.patch
+export LDFLAGS=-static
 
-./autogen.sh
-./configure --prefix=/usr
+autoreconf -fi
+./configure \
+    --prefix=/usr
+
 make
 make DESTDIR="$1" install
