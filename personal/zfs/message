@@ -1,0 +1,6 @@
+[1mIMPORTANT[m
+
+    You will need to rebuild this package for everytime you upgrade the kernel.
+    You can specify a KERNEL_VERSION variable in order to build without the need
+    to reboot before building.
+

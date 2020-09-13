@@ -1,0 +1,2 @@
+#!/bin/sh
+depmod -b "/usr/lib/modules/${KERNEL_VERSION:-$(uname -r)}"

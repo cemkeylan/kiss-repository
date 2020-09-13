@@ -1,0 +1,35 @@
+#!/bin/sh -e
+# Build script originally taken from github.com/jedavies-dev/kiss-zfs
+# Patched to work with the latest kernel, better directory management etc.
+
+patch -p1 < linux5.8.patch
+
+sed -i 's/CDDL/GPL/g' META
+
+./configure \
+    --prefix=/usr \
+    --sysconfdir=/etc \
+    --sbindir=/usr/bin \
+    --disable-systemd \
+    --disable-sysvinit \
+    --disable-nls \
+    --enable-linux-builtin \
+    --with-linux="/usr/lib/modules/${KERNEL_VERSION:-$(uname -r)}/build"
+
+make
+make DESTDIR="$1" install
+
+cd module
+make
+make DESTDIR="$1/usr" install
+
+# Holy hell zfs is insistent on not installing files where I want them to be
+# installed.
+mv "$1/lib/udev" "$1/usr/lib"
+mv "$1/sbin/mount.zfs" "$1/usr/bin/mount.zfs"
+rm -r "$1/sbin" "$1/lib"
+
+rm -rf "$1/usr/share/zfs/zfs-tests" \
+       "$1/usr/lib/dracut" \
+       "$1/usr/share/initramfs-tools"
+
