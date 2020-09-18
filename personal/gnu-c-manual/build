@@ -1,0 +1,4 @@
+#!/bin/sh -e
+
+makeinfo gnu-c-manual.texi
+install -Dm644 gnu-c-manual.info "$1/usr/share/info/gnu-c-manual.info"

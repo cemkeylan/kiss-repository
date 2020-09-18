@@ -1,0 +1,3 @@
+#!/bin/sh
+
+install-info "$CPT_ROOT/usr/share/info/gnu-c-manual.info" "$CPT_ROOT/usr/share/info/dir"
