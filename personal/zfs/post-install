@@ -1,2 +1,2 @@
 #!/bin/sh
-depmod -b "/usr/lib/modules/${KERNEL_VERSION:-$(uname -r)}"
+depmod -b "$CPT_ROOT/usr" "${KERNEL_VERSION:-$(uname -r)}"
