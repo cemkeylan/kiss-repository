@@ -2,7 +2,9 @@
 
 autoreconf -if
 
-export MAKEINFO=true
+cpt l texinfo || export MAKEINFO=true
+
+export LDFLAGS="$LDFLAGS -static"
 
 ./configure \
     --prefix=/usr \
