@@ -1,0 +1,43 @@
+The Z Filesystem on Carbs Linux
+===============================
+
+To run ZFS under Carbs, you need a kernel that supports modules. I personally
+don't use any of the in-kernel modules, but I still have modules enabled for
+this purpose. You can see my kernel configuration in this repository as well.
+
+If you are building ZFS for a different kernel version, specify the kernel
+version in the `KERNEL_VERSION` variable. Here is an example:
+
+    KERNEL_VERSION=5.8.9 cpt b zfs
+
+This will build for the target version, so you don't need to boot that kernel
+in order to build the module.
+
+
+Dependencies
+------------
+
+This package depends on 'libtirpc', but will probably link to more packages
+on your system, such as util-linux, libressl, and zlib. Even though I have
+tried linking all statically, it doesn't work.
+
+
+Making ZFS datasets available on boot
+-------------------------------------
+
+I personally don't have my root under ZFS, you will need further reading if that
+is your goal. I have two init scripts on '/etc/init' for mounting and unmounting
+ZFS.
+
+
+/etc/init/zfs.early-boot:
+
+    modprobe zfs
+    zpool import -a -f
+    zfs load-key -a
+    zfs mount -a
+
+
+/etc/init/zfs.pre.shutdown:
+
+    zfs umount -a

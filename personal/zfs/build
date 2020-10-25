@@ -2,8 +2,6 @@
 # Build script originally taken from github.com/jedavies-dev/kiss-zfs
 # Patched to work with the latest kernel, better directory management etc.
 
-patch -p1 < linux5.8.patch
-
 sed -i 's/CDDL/GPL/g' META
 
 ./configure \
